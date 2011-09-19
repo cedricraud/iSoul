@@ -1,0 +1,435 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* iSoulAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* iSoulAppDelegate.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		860EC2740F7C81C100C727C5 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 860EC2730F7C81C100C727C5 /* Contact.m */; };
+		8610A42B0F75214500B3E443 /* NSPCUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 8610A4270F75214500B3E443 /* NSPCUtilities.c */; };
+		8610A42C0F75214500B3E443 /* NSPMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 8610A42A0F75214500B3E443 /* NSPMessages.m */; };
+		8610A4A40F7533C100B3E443 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8610A4A30F7533C100B3E443 /* CFNetwork.framework */; };
+		8610A50D0F753A2800B3E443 /* iSoulCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8610A50C0F753A2800B3E443 /* iSoulCore.m */; };
+		8661CB0B0F7BC3480046F8C2 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8661CB0A0F7BC3480046F8C2 /* LoginController.m */; };
+		8661CB320F7BC6560046F8C2 /* NavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8661CB310F7BC6560046F8C2 /* NavController.m */; };
+		86B146CD0F781694006F038B /* ISAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B146CC0F781694006F038B /* ISAccount.m */; };
+		86B59D181015356000F36BB9 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B59D171015356000F36BB9 /* SettingsController.m */; };
+		86B59F811015472B00F36BB9 /* UIDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B59F7F1015472B00F36BB9 /* UIDeviceHardware.m */; };
+		86BD2945105BD540002A08EF /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86BD2944105BD540002A08EF /* MessageUI.framework */; };
+		86CE53750FDAEFBC00C322DB /* ISMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CE53740FDAEFBC00C322DB /* ISMessage.m */; };
+		86CE544D0FDAEFBC00C322DB /* ConversationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CE544C0FDAEFBC00C322DB /* ConversationController.m */; };
+		86E1A4AF0F7D496900A9B810 /* ImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E1A4AC0F7D496900A9B810 /* ImageLoader.m */; };
+		86E1A4B00F7D496900A9B810 /* LoaderElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E1A4AE0F7D496900A9B810 /* LoaderElement.m */; };
+		B2485B0D1427F9B70048E86C /* mail-button.png in Resources */ = {isa = PBXBuildFile; fileRef = B2485AFC1427F9B70048E86C /* mail-button.png */; };
+		B2485B0E1427F9B70048E86C /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B2485AFD1427F9B70048E86C /* Icon.png */; };
+		B2485B0F1427F9B70048E86C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B2485AFE1427F9B70048E86C /* Default.png */; };
+		B2485B101427F9B70048E86C /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = B2485AFF1427F9B70048E86C /* background.png */; };
+		B2485B111427F9B70048E86C /* contact-background.png in Resources */ = {isa = PBXBuildFile; fileRef = B2485B001427F9B70048E86C /* contact-background.png */; };
+		B2485B121427F9B70048E86C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2485B011427F9B70048E86C /* Entitlements.plist */; };
+		B2485B131427F9B70048E86C /* delete-contact.png in Resources */ = {isa = PBXBuildFile; fileRef = B2485B021427F9B70048E86C /* delete-contact.png */; };
+		B2485B141427F9B70048E86C /* delete-contact-on.png in Resources */ = {isa = PBXBuildFile; fileRef = B2485B031427F9B70048E86C /* delete-contact-on.png */; };
+		B2485B151427F9B70048E86C /* message-background.png in Resources */ = {isa = PBXBuildFile; fileRef = B2485B041427F9B70048E86C /* message-background.png */; };
+		B2485B161427F9B70048E86C /* contact-background-on.png in Resources */ = {isa = PBXBuildFile; fileRef = B2485B051427F9B70048E86C /* contact-background-on.png */; };
+		B2485B171427F9B70048E86C /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = B2485B061427F9B70048E86C /* placeholder.png */; };
+		B2485B181427F9B70048E86C /* login-border.png in Resources */ = {isa = PBXBuildFile; fileRef = B2485B071427F9B70048E86C /* login-border.png */; };
+		B2485B191427F9B70048E86C /* offline.png in Resources */ = {isa = PBXBuildFile; fileRef = B2485B081427F9B70048E86C /* offline.png */; };
+		B2485B1A1427F9B70048E86C /* away.png in Resources */ = {isa = PBXBuildFile; fileRef = B2485B091427F9B70048E86C /* away.png */; };
+		B2485B1B1427F9B70048E86C /* online.png in Resources */ = {isa = PBXBuildFile; fileRef = B2485B0A1427F9B70048E86C /* online.png */; };
+		B2485B1C1427F9B70048E86C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2485B0B1427F9B70048E86C /* MainWindow.xib */; };
+		B2485B1F1427F9CC0048E86C /* ContactListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2485B1E1427F9CC0048E86C /* ContactListController.m */; };
+		B2B00DE41427FA3D009F69CE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B00DE31427FA3D009F69CE /* main.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* iSoulAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSoulAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* iSoulAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iSoulAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* iSoul.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSoul.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		860EC2720F7C81C100C727C5 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		860EC2730F7C81C100C727C5 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		8610A4270F75214500B3E443 /* NSPCUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NSPCUtilities.c; sourceTree = "<group>"; };
+		8610A4280F75214500B3E443 /* NSPCUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSPCUtilities.h; sourceTree = "<group>"; };
+		8610A4290F75214500B3E443 /* NSPMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSPMessages.h; sourceTree = "<group>"; };
+		8610A42A0F75214500B3E443 /* NSPMessages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSPMessages.m; sourceTree = "<group>"; };
+		8610A4A30F7533C100B3E443 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		8610A50B0F753A2800B3E443 /* iSoulCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iSoulCore.h; sourceTree = "<group>"; };
+		8610A50C0F753A2800B3E443 /* iSoulCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iSoulCore.m; sourceTree = "<group>"; };
+		8661CB090F7BC3480046F8C2 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
+		8661CB0A0F7BC3480046F8C2 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
+		8661CB300F7BC6560046F8C2 /* NavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavController.h; sourceTree = "<group>"; };
+		8661CB310F7BC6560046F8C2 /* NavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavController.m; sourceTree = "<group>"; };
+		86B146CB0F781694006F038B /* ISAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISAccount.h; sourceTree = "<group>"; };
+		86B146CC0F781694006F038B /* ISAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISAccount.m; sourceTree = "<group>"; };
+		86B59D161015356000F36BB9 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
+		86B59D171015356000F36BB9 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
+		86B59F7F1015472B00F36BB9 /* UIDeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDeviceHardware.m; sourceTree = "<group>"; };
+		86B59F801015472B00F36BB9 /* UIDeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceHardware.h; sourceTree = "<group>"; };
+		86BD2944105BD540002A08EF /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		86CE53730FDAEFBC00C322DB /* ISMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISMessage.h; sourceTree = "<group>"; };
+		86CE53740FDAEFBC00C322DB /* ISMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISMessage.m; sourceTree = "<group>"; };
+		86CE544B0FDAEFBC00C322DB /* ConversationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationController.h; sourceTree = "<group>"; };
+		86CE544C0FDAEFBC00C322DB /* ConversationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationController.m; sourceTree = "<group>"; };
+		86DD7D840F7C731500BD7C2E /* ContactTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewController.h; sourceTree = "<group>"; };
+		86DD7D850F7C731500BD7C2E /* ContactTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewController.m; sourceTree = "<group>"; };
+		86E1A4AB0F7D496900A9B810 /* ImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLoader.h; sourceTree = "<group>"; };
+		86E1A4AC0F7D496900A9B810 /* ImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLoader.m; sourceTree = "<group>"; };
+		86E1A4AD0F7D496900A9B810 /* LoaderElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoaderElement.h; sourceTree = "<group>"; };
+		86E1A4AE0F7D496900A9B810 /* LoaderElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoaderElement.m; sourceTree = "<group>"; };
+		B2485AFC1427F9B70048E86C /* mail-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mail-button.png"; path = "Ressources/mail-button.png"; sourceTree = "<group>"; };
+		B2485AFD1427F9B70048E86C /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Ressources/Icon.png; sourceTree = "<group>"; };
+		B2485AFE1427F9B70048E86C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Ressources/Default.png; sourceTree = "<group>"; };
+		B2485AFF1427F9B70048E86C /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Ressources/background.png; sourceTree = "<group>"; };
+		B2485B001427F9B70048E86C /* contact-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "contact-background.png"; path = "Ressources/contact-background.png"; sourceTree = "<group>"; };
+		B2485B011427F9B70048E86C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = Ressources/Entitlements.plist; sourceTree = "<group>"; };
+		B2485B021427F9B70048E86C /* delete-contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "delete-contact.png"; path = "Ressources/delete-contact.png"; sourceTree = "<group>"; };
+		B2485B031427F9B70048E86C /* delete-contact-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "delete-contact-on.png"; path = "Ressources/delete-contact-on.png"; sourceTree = "<group>"; };
+		B2485B041427F9B70048E86C /* message-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "message-background.png"; path = "Ressources/message-background.png"; sourceTree = "<group>"; };
+		B2485B051427F9B70048E86C /* contact-background-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "contact-background-on.png"; path = "Ressources/contact-background-on.png"; sourceTree = "<group>"; };
+		B2485B061427F9B70048E86C /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = placeholder.png; path = Ressources/placeholder.png; sourceTree = "<group>"; };
+		B2485B071427F9B70048E86C /* login-border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login-border.png"; path = "Ressources/login-border.png"; sourceTree = "<group>"; };
+		B2485B081427F9B70048E86C /* offline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = offline.png; path = Ressources/offline.png; sourceTree = "<group>"; };
+		B2485B091427F9B70048E86C /* away.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = away.png; path = Ressources/away.png; sourceTree = "<group>"; };
+		B2485B0A1427F9B70048E86C /* online.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = online.png; path = Ressources/online.png; sourceTree = "<group>"; };
+		B2485B0B1427F9B70048E86C /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Ressources/MainWindow.xib; sourceTree = "<group>"; };
+		B2485B1D1427F9CC0048E86C /* ContactListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListController.h; sourceTree = "<group>"; };
+		B2485B1E1427F9CC0048E86C /* ContactListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactListController.m; sourceTree = "<group>"; };
+		B2B00DE01427FA1F009F69CE /* iSoul-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iSoul-Info.plist"; sourceTree = "<group>"; };
+		B2B00DE21427FA3D009F69CE /* iSoul_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iSoul_Prefix.pch; path = Classes/iSoul_Prefix.pch; sourceTree = "<group>"; };
+		B2B00DE31427FA3D009F69CE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Classes/main.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+				8610A4A40F7533C100B3E443 /* CFNetwork.framework in Frameworks */,
+				86BD2945105BD540002A08EF /* MessageUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				86E1A4AB0F7D496900A9B810 /* ImageLoader.h */,
+				86E1A4AC0F7D496900A9B810 /* ImageLoader.m */,
+				86E1A4AD0F7D496900A9B810 /* LoaderElement.h */,
+				86E1A4AE0F7D496900A9B810 /* LoaderElement.m */,
+				86CE53730FDAEFBC00C322DB /* ISMessage.h */,
+				86CE53740FDAEFBC00C322DB /* ISMessage.m */,
+				860EC2720F7C81C100C727C5 /* Contact.h */,
+				860EC2730F7C81C100C727C5 /* Contact.m */,
+				86B146CB0F781694006F038B /* ISAccount.h */,
+				86B146CC0F781694006F038B /* ISAccount.m */,
+				8610A50B0F753A2800B3E443 /* iSoulCore.h */,
+				8610A50C0F753A2800B3E443 /* iSoulCore.m */,
+				8610A4270F75214500B3E443 /* NSPCUtilities.c */,
+				8610A4280F75214500B3E443 /* NSPCUtilities.h */,
+				8610A4290F75214500B3E443 /* NSPMessages.h */,
+				8610A42A0F75214500B3E443 /* NSPMessages.m */,
+				B2485B1D1427F9CC0048E86C /* ContactListController.h */,
+				B2485B1E1427F9CC0048E86C /* ContactListController.m */,
+				8661CB090F7BC3480046F8C2 /* LoginController.h */,
+				8661CB0A0F7BC3480046F8C2 /* LoginController.m */,
+				86DD7D840F7C731500BD7C2E /* ContactTableViewController.h */,
+				86DD7D850F7C731500BD7C2E /* ContactTableViewController.m */,
+				86B59D161015356000F36BB9 /* SettingsController.h */,
+				86B59D171015356000F36BB9 /* SettingsController.m */,
+				86CE544B0FDAEFBC00C322DB /* ConversationController.h */,
+				86CE544C0FDAEFBC00C322DB /* ConversationController.m */,
+				86B59F801015472B00F36BB9 /* UIDeviceHardware.h */,
+				86B59F7F1015472B00F36BB9 /* UIDeviceHardware.m */,
+				8661CB300F7BC6560046F8C2 /* NavController.h */,
+				8661CB310F7BC6560046F8C2 /* NavController.m */,
+				1D3623240D0F684500981E51 /* iSoulAppDelegate.h */,
+				1D3623250D0F684500981E51 /* iSoulAppDelegate.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* iSoul.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B2B00DE21427FA3D009F69CE /* iSoul_Prefix.pch */,
+				B2B00DE31427FA3D009F69CE /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B2B00DE01427FA1F009F69CE /* iSoul-Info.plist */,
+				B2485AFC1427F9B70048E86C /* mail-button.png */,
+				B2485AFD1427F9B70048E86C /* Icon.png */,
+				B2485AFE1427F9B70048E86C /* Default.png */,
+				B2485AFF1427F9B70048E86C /* background.png */,
+				B2485B001427F9B70048E86C /* contact-background.png */,
+				B2485B011427F9B70048E86C /* Entitlements.plist */,
+				B2485B021427F9B70048E86C /* delete-contact.png */,
+				B2485B031427F9B70048E86C /* delete-contact-on.png */,
+				B2485B041427F9B70048E86C /* message-background.png */,
+				B2485B051427F9B70048E86C /* contact-background-on.png */,
+				B2485B061427F9B70048E86C /* placeholder.png */,
+				B2485B071427F9B70048E86C /* login-border.png */,
+				B2485B081427F9B70048E86C /* offline.png */,
+				B2485B091427F9B70048E86C /* away.png */,
+				B2485B0A1427F9B70048E86C /* online.png */,
+				B2485B0B1427F9B70048E86C /* MainWindow.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8610A4A30F7533C100B3E443 /* CFNetwork.framework */,
+				86BD2944105BD540002A08EF /* MessageUI.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* iSoul */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "iSoul" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iSoul;
+			productName = iSoul;
+			productReference = 1D6058910D05DD3D006BFB54 /* iSoul.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iSoul" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* iSoul */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2485B0D1427F9B70048E86C /* mail-button.png in Resources */,
+				B2485B0E1427F9B70048E86C /* Icon.png in Resources */,
+				B2485B0F1427F9B70048E86C /* Default.png in Resources */,
+				B2485B101427F9B70048E86C /* background.png in Resources */,
+				B2485B111427F9B70048E86C /* contact-background.png in Resources */,
+				B2485B121427F9B70048E86C /* Entitlements.plist in Resources */,
+				B2485B131427F9B70048E86C /* delete-contact.png in Resources */,
+				B2485B141427F9B70048E86C /* delete-contact-on.png in Resources */,
+				B2485B151427F9B70048E86C /* message-background.png in Resources */,
+				B2485B161427F9B70048E86C /* contact-background-on.png in Resources */,
+				B2485B171427F9B70048E86C /* placeholder.png in Resources */,
+				B2485B181427F9B70048E86C /* login-border.png in Resources */,
+				B2485B191427F9B70048E86C /* offline.png in Resources */,
+				B2485B1A1427F9B70048E86C /* away.png in Resources */,
+				B2485B1B1427F9B70048E86C /* online.png in Resources */,
+				B2485B1C1427F9B70048E86C /* MainWindow.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D3623260D0F684500981E51 /* iSoulAppDelegate.m in Sources */,
+				8610A42B0F75214500B3E443 /* NSPCUtilities.c in Sources */,
+				8610A42C0F75214500B3E443 /* NSPMessages.m in Sources */,
+				8610A50D0F753A2800B3E443 /* iSoulCore.m in Sources */,
+				86B146CD0F781694006F038B /* ISAccount.m in Sources */,
+				8661CB0B0F7BC3480046F8C2 /* LoginController.m in Sources */,
+				8661CB320F7BC6560046F8C2 /* NavController.m in Sources */,
+				860EC2740F7C81C100C727C5 /* Contact.m in Sources */,
+				86E1A4AF0F7D496900A9B810 /* ImageLoader.m in Sources */,
+				86E1A4B00F7D496900A9B810 /* LoaderElement.m in Sources */,
+				86CE53750FDAEFBC00C322DB /* ISMessage.m in Sources */,
+				86CE544D0FDAEFBC00C322DB /* ConversationController.m in Sources */,
+				86B59D181015356000F36BB9 /* SettingsController.m in Sources */,
+				86B59F811015472B00F36BB9 /* UIDeviceHardware.m in Sources */,
+				B2485B1F1427F9CC0048E86C /* ContactListController.m in Sources */,
+				B2B00DE41427FA3D009F69CE /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Classes/iSoul_Prefix.pch;
+				INFOPLIST_FILE = "iSoul-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PRODUCT_NAME = iSoul;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Classes/iSoul_Prefix.pch;
+				INFOPLIST_FILE = "iSoul-Info.plist";
+				PRODUCT_NAME = iSoul;
+			};
+			name = Release;
+		};
+		860CAC5E101E696D003A39C5 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+			};
+			name = Distribution;
+		};
+		860CAC5F101E696D003A39C5 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Classes/iSoul_Prefix.pch;
+				INFOPLIST_FILE = "iSoul-Info.plist";
+				PRODUCT_NAME = iSoul;
+			};
+			name = Distribution;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "iSoul" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+				860CAC5F101E696D003A39C5 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iSoul" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+				860CAC5E101E696D003A39C5 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
