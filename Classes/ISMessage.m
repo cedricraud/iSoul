@@ -13,7 +13,7 @@
 
 @synthesize received, date, content;
 
-- (id)initWithDate:(NSDate*)d content:(NSString*)c received:(bool)r
+- (id)initWithDate:(NSDate *)d content:(NSString *)c received:(bool)r
 {
 	date = [d retain];
 	content = c;

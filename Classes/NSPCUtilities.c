@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 
-char*   eval_carriage_returns(char *str)
+char *eval_carriage_returns(char *str)
 {
     int i;
     int j;
@@ -33,11 +33,11 @@ char*   eval_carriage_returns(char *str)
     return (str);
 }
 
-char*       secure_carriage_returns(char *str)
+char *secure_carriage_returns(char *str)
 {
     int     i;
     int     len;
-    char*   nstr = NULL;
+    char    *nstr = NULL;
 
     for (i = 0, len = 0; str[i]; i++, len++)
         if (str[i] == '\n')
@@ -57,9 +57,9 @@ char*       secure_carriage_returns(char *str)
     return (nstr);
 }
 
-char*       url_encode(unsigned char *str)
+char *url_encode(unsigned char *str)
 {
-    char*   tmp;
+    char *tmp;
 
     for (tmp = ""; str && *str; str++)
     {
@@ -78,12 +78,12 @@ char*       url_encode(unsigned char *str)
     return (tmp);
 }
 
-char*       url_decode(char *str)
+char *url_decode(char *str)
 {
     int     i;
     int     j;
     char    nb[5];
-    
+
     memset(nb, 0, 5);
     for (i = j = 0; str[i]; i++, j++)
     {

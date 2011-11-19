@@ -12,7 +12,7 @@
 @implementation ContactTableViewController
 
 
-- (id)initWithStyle:(UITableViewStyle)style account:(ISAccount*)a
+- (id)initWithStyle:(UITableViewStyle)style account:(ISAccount *)a
 {
     // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
     if (self = [super initWithStyle:style])
@@ -23,11 +23,11 @@
 		self.tableView.showsVerticalScrollIndicator = NO;
 		self.tableView.backgroundColor = [UIColor clearColor];
 		//CGRectMake(0, 0, 320, 200);
-		
+
 		_addCell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
 		_addCell.selectionStyle = UITableViewCellSelectionStyleBlue;
 		_addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
-		
+
 		_addPicture = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 34, 40)];
 		_addPicture.image = _account.imageLoader.placeholder;
 		[_addCell addSubview:_addPicture];
@@ -54,7 +54,7 @@
 	[_addCell addSubview:_addTextField];
 	_addTextField.text = @"";
 	[UIView beginAnimations:nil context:nil];
-	[UIView setAnimationDuration:0.4];	
+	[UIView setAnimationDuration:0.4];
 	self.tableView.frame = CGRectMake(0, 0, 320, 200);
 	_addButton.alpha = 1;
 	_addButton.enabled = YES;
@@ -73,7 +73,7 @@
 	[_addTextField removeFromSuperview];
 	[_addCell addSubview:_addLabel];
 	[UIView beginAnimations:nil context:nil];
-	[UIView setAnimationDuration:0.4];	
+	[UIView setAnimationDuration:0.4];
 	self.tableView.frame = _frame;
 	_addButton.alpha = 0.5;
 	_addButton.enabled = NO;
@@ -128,7 +128,7 @@
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	
+
 	// Release any cached data, images, etc that aren't in use.
 }
 
@@ -179,14 +179,14 @@
 		}
 		else
 		{
-			Contact* c = [_account.contacts objectAtIndex:indexPath.row];
+			Contact *c = [_account.contacts objectAtIndex:indexPath.row];
 			if (c)
 			{
 				_account.current = c;
 				[[NSNotificationCenter defaultCenter] postNotificationName:@"ISC/viewConversation" object:self userInfo:nil];
 			}
 		}
-		
+
 }
 
 
@@ -202,14 +202,14 @@
 /*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
 */
 

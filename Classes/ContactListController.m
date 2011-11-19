@@ -11,11 +11,9 @@
 
 @implementation ContactListController
 
-- (id)initWithISAccount:(ISAccount*)a
+- (id)initWithISAccount:(ISAccount *)a
 {
-	self = [super init];
-	
-	if (self) 
+	if ((self = [super init]) != nil)
 	{
 		_account = a;
 		self.title = @"iSoul";
@@ -28,17 +26,17 @@
 
 - (void)loadView
 {
-	UIView*	myView = [[UIView alloc] init];
-	
+	UIView *myView = [[UIView alloc] init];
+
 	myView.frame = CGRectMake(0, 0, 320, 480);
 	myView.backgroundColor = [UIColor clearColor];
 
 	_loadedContact = 0;
 	_interfaceOrientation = UIInterfaceOrientationPortrait;
-	
+
 	_addCell = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
 	_addCell.alpha = 0;
-	
+
 	_addButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 300, 40)];
 	_addButton.alpha = 0.6;
 	_addButton.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -46,8 +44,8 @@
 	[_addButton setBackgroundImage:_account.imageLoader.contactBackgroundOn forState:UIControlStateHighlighted];
 	[_addButton addTarget:self action:@selector(addContact) forControlEvents:UIControlEventTouchDown];
 	_addButton.adjustsImageWhenHighlighted = NO;
-	[_addCell addSubview:_addButton];	
-	
+	[_addCell addSubview:_addButton];
+
 	_addPicture = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 34, 40)];
 	_addPicture.image = _account.imageLoader.placeholder;
 	_addPicture.alpha = 0.5;
@@ -62,22 +60,22 @@
 	_addTextField.clearButtonMode = UITextFieldViewModeNever;
 	_addTextField.returnKeyType = UIReturnKeyDone;
 	[_addCell addSubview:_addTextField];
-	
-	
+
+
 	_scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
 	_scrollView.showsVerticalScrollIndicator = NO;
 	_scrollView.alwaysBounceVertical = YES;
 	_scrollView.delegate = self;
-	
-	for (Contact* c in _account.contacts)
+
+	for (Contact *c in _account.contacts)
 	{
 		[_scrollView addSubview:c.view];
 		[c loadPicture];
 	}
 	[_scrollView addSubview:_addCell];
-	
+
 	[self reposition];
-	
+
 	[myView addSubview:_scrollView];
 
 	self.view = myView;
@@ -94,11 +92,11 @@
 
 - (void)reposition
 {
-	int	i = 0;	
+	int	i = 0;
 	switch (_interfaceOrientation) {
 		case UIInterfaceOrientationPortrait:
 		case UIInterfaceOrientationPortraitUpsideDown:
-			for (Contact* c in _account.contacts)
+			for (Contact *c in _account.contacts)
 			{
 				c.view.frame = CGRectMake(0, i  * CONTACT_HEIGHT - 1, 320, CONTACT_HEIGHT);
 				[c setOrientation:_interfaceOrientation];
@@ -111,7 +109,7 @@
 			break;
 		case UIInterfaceOrientationLandscapeLeft:
 		case UIInterfaceOrientationLandscapeRight:
-			for (Contact* c in _account.contacts)
+			for (Contact *c in _account.contacts)
 			{
 				c.view.frame = CGRectMake((i % 3) * 160, (i / 3) * CONTACT_HEIGHT - 1, 165, CONTACT_HEIGHT);
 				[c setOrientation:_interfaceOrientation];
@@ -136,7 +134,7 @@
 		[[[_account.contacts objectAtIndex:_loadedContact] view] setAlpha:1];
 		[UIView commitAnimations];
 		_loadedContact++;
-		
+
 		if (_loadedContact < 8)
 		{
 		[NSTimer scheduledTimerWithTimeInterval: 0.075
@@ -150,7 +148,7 @@
 			[self loadContacts];
 		}
 
-		
+
 	}
 	else
 	{
@@ -158,7 +156,7 @@
 		[UIView setAnimationDuration:0.5];
 		_addCell.alpha = 1;
 		[UIView commitAnimations];
-		
+
 	}
 }
 
@@ -177,7 +175,7 @@
 	if ([_account.contacts count] > 3)
 	{
 		[UIView beginAnimations:nil context:nil];
-		[UIView setAnimationDuration:0.4];	
+		[UIView setAnimationDuration:0.4];
 		_scrollView.frame = CGRectMake(0, 0, 320, 400);
 		[self scrollToBottom];
 		[UIView commitAnimations];
@@ -194,11 +192,11 @@
 	[_addTextField resignFirstResponder];
 	if ([_account addContact:[NSString stringWithString:_addTextField.text]])
 	{
-		Contact* contact = [_account getContact:_addTextField.text];
+		Contact *contact = [_account getContact:_addTextField.text];
 		[_scrollView addSubview:contact.view];
 		[contact loadPicture];
 		[UIView beginAnimations:nil context:nil];
-		[UIView setAnimationDuration:0.4];	
+		[UIView setAnimationDuration:0.4];
 		contact.view.alpha = 1;
 		[self reposition];
 		[UIView commitAnimations];
@@ -218,7 +216,7 @@
 {
 	_interfaceOrientation = toInterfaceOrientation;
 	[UIView beginAnimations:nil context:nil];
-	[UIView setAnimationDuration:0.5];	
+	[UIView setAnimationDuration:0.5];
 	[self reposition];
 	[UIView commitAnimations];
 }
@@ -255,7 +253,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-	
+
 }
 
 - (void)viewDidUnload {
@@ -275,7 +273,7 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-	_scrollView.clearsContextBeforeDrawing = YES;	
+	_scrollView.clearsContextBeforeDrawing = YES;
 }
 
 

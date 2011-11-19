@@ -14,46 +14,49 @@
 
 - (id)init
 {
-	login = @"";
-	password = @"";
-	status = @"connection";
-	location = [[[UIDevice currentDevice] platformString] copy];
-	userdata = @"Rocking Chair !";
-	searching = nil;
-	current = nil;
-	contacts = [[NSMutableArray alloc] init];
-	talking = [[NSMutableArray alloc] init];
-	imageLoader = [[ImageLoader alloc] init];
-	searchContact = [[Contact alloc] initWithLogin:NOLOGIN imageLoader:imageLoader];
-	_prefs = [NSUserDefaults standardUserDefaults];
-	
-	if ([_prefs stringForKey:@"last"])
-	{
-		self.login = [_prefs stringForKey:@"last"];
-	}
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteContact:) name:@"ISC/deleteContact" object:nil];
+	if ((self = [super init]) != nil) {
+		login = @"";
+		password = @"";
+		status = @"connection";
+		location = [[[UIDevice currentDevice] platformString] copy];
+		userdata = @"Rocking Chair !";
+		searching = nil;
+		current = nil;
+		contacts = [[NSMutableArray alloc] init];
+		talking = [[NSMutableArray alloc] init];
+		imageLoader = [[ImageLoader alloc] init];
+		searchContact = [[Contact alloc] initWithLogin:NOLOGIN imageLoader:imageLoader];
+		_prefs = [NSUserDefaults standardUserDefaults];
 
-	
-	/*
-    [self setLogin:@"raud_c"];
-	[contacts addObject:[[Contact alloc] initWithLogin:@"philip_o" imageLoader:imageLoader]];
-	[contacts addObject:[[Contact alloc] initWithLogin:@"de-sai_f" imageLoader:imageLoader]];
-	[contacts addObject:[[Contact alloc] initWithLogin:@"ghalmi_j" imageLoader:imageLoader]];
-	[contacts addObject:[[Contact alloc] initWithLogin:@"seine_w" imageLoader:imageLoader]];
-	[contacts addObject:[[Contact alloc] initWithLogin:@"fahmi_m" imageLoader:imageLoader]];
-	[contacts addObject:[[Contact alloc] initWithLogin:@"le-rou_j" imageLoader:imageLoader]];
-	[contacts addObject:[[Contact alloc] initWithLogin:@"vigour_c" imageLoader:imageLoader]];
-    */
+		if ([_prefs stringForKey:@"last"])
+		{
+			self.login = [_prefs stringForKey:@"last"];
+		}
+
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteContact:) name:@"ISC/deleteContact" object:nil];
+
+
+		/*
+		 [self setLogin:@"raud_c"];
+		 [contacts addObject:[[Contact alloc] initWithLogin:@"philip_o" imageLoader:imageLoader]];
+		 [contacts addObject:[[Contact alloc] initWithLogin:@"de-sai_f" imageLoader:imageLoader]];
+		 [contacts addObject:[[Contact alloc] initWithLogin:@"ghalmi_j" imageLoader:imageLoader]];
+		 [contacts addObject:[[Contact alloc] initWithLogin:@"seine_w" imageLoader:imageLoader]];
+		 [contacts addObject:[[Contact alloc] initWithLogin:@"fahmi_m" imageLoader:imageLoader]];
+		 [contacts addObject:[[Contact alloc] initWithLogin:@"le-rou_j" imageLoader:imageLoader]];
+		 [contacts addObject:[[Contact alloc] initWithLogin:@"vigour_c" imageLoader:imageLoader]];
+		 */
+	}
+
 	return self;
 }
 
-- (NSString*)login
+- (NSString *)login
 {
 	return login;
 }
 
-- (void)setLogin:(NSString*)value
+- (void)setLogin:(NSString *)value
 {
 	if ([login isEqualToString:value])
 		return;
@@ -62,37 +65,37 @@
 		return;
 	if ([_prefs objectForKey:login])
 	{
-		NSDictionary* dict = [_prefs objectForKey:login];
-		NSArray* users = [dict objectForKey:@"contacts"];
+		NSDictionary * dict = [_prefs objectForKey:login];
+		NSArray * users = [dict objectForKey:@"contacts"];
 		@try
 		{
 			password = [[dict objectForKey:@"password"] isKindOfClass:[NSString class]] && [[dict objectForKey:@"password"] length] > 0 ? [dict objectForKey:@"password"] : @"lol";
 			location = [[dict objectForKey:@"location"] isKindOfClass:[NSString class]] && [[dict objectForKey:@"location"] length] > 0 ? [dict objectForKey:@"location"] : @"iPhone";
 			userdata = [[dict objectForKey:@"userdata"] isKindOfClass:[NSString class]] &&  [[dict objectForKey:@"userdata"] length] > 0 ? [dict objectForKey:@"userdata"] : @"iSoul";
 		}
-		@catch(NSException* exception)
+		@catch(NSException *exception)
 		{
 			NSLog(@"Prefs: Caught %@: %@", [exception name],  [exception reason]);
 		}
-		for(NSString* user in users)
+		for(NSString *user in users)
 		{
-			Contact* contact = [[Contact alloc] initWithLogin:user imageLoader:imageLoader];
+			Contact *contact = [[Contact alloc] initWithLogin:user imageLoader:imageLoader];
 			if ([user isEqualToString:login])
 				contact.root = YES;
-			[contacts addObject:contact];			
+			[contacts addObject:contact];
 		}
 	}
 	else
 	{
-		Contact* contact = [[Contact alloc] initWithLogin:login imageLoader:imageLoader];
+		Contact *contact = [[Contact alloc] initWithLogin:login imageLoader:imageLoader];
 		contact.root = YES;
-		[contacts addObject:contact];		
-	}	
+		[contacts addObject:contact];
+	}
 }
 
 - (void)didConnect
 {
-	
+
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"ISC/didConnect" object:self userInfo:nil];
 	NSLog(@"didConnect");
 }
@@ -100,7 +103,7 @@
 - (void)didDisconnect
 {
 	login = @"";
-	
+
 	[_prefs removeObjectForKey:@"last"];
 	[_prefs synchronize];
 
@@ -138,30 +141,30 @@
 	}
 }
 
-- (void)receiveMessage:(NSString*)message fromUser:(NSString*)user
+- (void)receiveMessage:(NSString *)message fromUser:(NSString *)user
 {
-	Contact* c = [self getContact:user];
-	
+	Contact *c = [self getContact:user];
+
 	if (!c)
 		c = [[Contact alloc] initWithLogin:user imageLoader:imageLoader];
-	
+
 	[c.messages addObject:[[ISMessage alloc] initWithDate:[NSDate date] content:message received:YES]];
 	c.unread += 1;
 	[self.talking addObject:c];
-	
+
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"ISC/newMessage" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys: user, @"user", nil]];
 	//NSLog(@"receiveMessage:%@ fromUser:%@", message, user);
 }
 
 - (void)sendMessage:(NSString *)message toUser:(NSString *)user
 {
-	Contact* c = [self getContact:user];
-	
+	Contact *c = [self getContact:user];
+
 	if (!c)
 		c = [[Contact alloc] initWithLogin:user imageLoader:imageLoader];
-	
+
 	[c.messages addObject:[[ISMessage alloc] initWithDate:[NSDate date] content:message received:NO]];
-	
+
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"ISC/sendMessage" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys: message, @"message", user, @"user", nil]];
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"ISC/newMessage" object:self userInfo:nil];
 
@@ -172,15 +175,15 @@
 	NSLog(@"disconnectedFromServer");
 }
 
-- (void)contactIsNowOnline:(NSString*)user
+- (void)contactIsNowOnline:(NSString *)user
 {
 	NSLog(@"contactIsNowOnline:%@", user);
 }
 
-- (void)contactIsNowOffline:(NSString*)user
+- (void)contactIsNowOffline:(NSString *)user
 {
 	NSLog(@"contactIsNowOffline:%@", user);
-	Contact* c = [self getContact:user];
+	Contact *c = [self getContact:user];
 	if (c)
 	{
 		c.status = @"offline";
@@ -188,39 +191,39 @@
 	}
 }
 
-- (void)contact:(NSString*)user changedState:(NSString*)state
+- (void)contact:(NSString *)user changedState:(NSString *)state
 {
 	NSLog(@"contact:%@ changedState:%@", user, state);
-	Contact* c = [self getContact:user];
+	Contact *c = [self getContact:user];
 	if (c)
 		c.status = state;
 }
 
-- (void)contactStartedTyping:(NSString*)user
+- (void)contactStartedTyping:(NSString *)user
 {
 	NSLog(@"contactStartedTyping:%@", user);
 }
 
-- (void)contactStoppedTyping:(NSString*)user
+- (void)contactStoppedTyping:(NSString *)user
 {
 	NSLog(@"contactStoppedTyping:%@", user);
 }
 
-- (void)receivedInfo:(NSArray*)content forUser:(NSString*)user
+- (void)receivedInfo:(NSArray *)content forUser:(NSString *)user
 {
-	Contact* c = [self getContact:[content objectAtIndex:2]];
+	Contact *c = [self getContact:[content objectAtIndex:2]];
 	if (c)
 	{
 		c.location = [NSPMessages decode:[content objectAtIndex:9]];
-		NSArray* a = [[content objectAtIndex:11] componentsSeparatedByString:@":"];
+		NSArray *a = [[content objectAtIndex:11] componentsSeparatedByString:@":"];
 		c.status = [a objectAtIndex:0];
 	}
 	NSLog(@"receivedInfo:%@ forUser:%@", content, user);
 }
 
-- (Contact*)getContact:(NSString*) l
+- (Contact *)getContact:(NSString *)l
 {
-	for (Contact* c in contacts)
+	for (Contact *c in contacts)
 	{
 		if(c.login && [c.login isEqualToString:l])
 			return c;
@@ -228,7 +231,7 @@
 	return nil;
 }
 
-- (Contact*)addContact:(NSString*)l
+- (Contact *)addContact:(NSString *)l
 {
 	NSUInteger length = [l length];
 	if (length >= 2 && length <= 10)
@@ -236,7 +239,7 @@
 			return nil;
 		else
 		{
-			Contact* c = [[Contact alloc] initWithLogin:l imageLoader:imageLoader];
+			Contact *c = [[Contact alloc] initWithLogin:l imageLoader:imageLoader];
 			if (c)
 			{
 				[self.contacts addObject:c];
@@ -251,10 +254,10 @@
 		return nil;
 }
 
-- (void)deleteContact:(NSNotification*)notification
+- (void)deleteContact:(NSNotification *)notification
 {
-	NSString* user = [[notification userInfo] objectForKey:@"user"];
-	Contact* contact = [self getContact:user];
+	NSString *user = [[notification userInfo] objectForKey:@"user"];
+	Contact *contact = [self getContact:user];
 	if (contact)
 	{
 		[contacts removeObject:contact];
@@ -269,8 +272,8 @@
 
 - (void)save
 {
-	NSMutableArray* users = [NSMutableArray arrayWithCapacity:[contacts count]];
-	for(Contact* contact in contacts)
+	NSMutableArray *users = [NSMutableArray arrayWithCapacity:[contacts count]];
+	for(Contact *contact in contacts)
 		[users addObject:contact.login];
 	[_prefs removeObjectForKey:login];
 	if ([location length] == 0)

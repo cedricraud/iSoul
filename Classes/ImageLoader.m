@@ -12,29 +12,32 @@
 
 @synthesize placeholder, contactBackground, contactBackgroundOn, loginBorder, deleteContact, deleteContactOn, mailButton, background;
 
--(id) init
+- (id)init
 {
-	_buffer = [[NSMutableArray alloc] init];
-	_dictionary = [[NSMutableDictionary alloc] init];
-	_active = 0;
-	_limit = 10;
-	_count = 0;
-	placeholder = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"placeholder" ofType:@"png"]];
-	contactBackground = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"contact-background" ofType:@"png"]];
-	contactBackground = [contactBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-	contactBackgroundOn = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"contact-background-on" ofType:@"png"]];
-	contactBackgroundOn = [contactBackgroundOn stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-	loginBorder = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"login-border" ofType:@"png"]];
-	deleteContact = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"delete-contact" ofType:@"png"]];	
-	deleteContactOn = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"delete-contact-on" ofType:@"png"]];	
-	mailButton = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"mail-button" ofType:@"png"]];	
-	background = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"background" ofType:@"png"]];	
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadedItem:) name:@"LEIsLoaded" object:nil];
+	if ((self = [super init]) != nil) {
+		_buffer = [[NSMutableArray alloc] init];
+		_dictionary = [[NSMutableDictionary alloc] init];
+		_active = 0;
+		_limit = 10;
+		_count = 0;
+		placeholder = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"placeholder" ofType:@"png"]];
+		contactBackground = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"contact-background" ofType:@"png"]];
+		contactBackground = [contactBackground stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+		contactBackgroundOn = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"contact-background-on" ofType:@"png"]];
+		contactBackgroundOn = [contactBackgroundOn stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+		loginBorder = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"login-border" ofType:@"png"]];
+		deleteContact = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"delete-contact" ofType:@"png"]];
+		deleteContactOn = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"delete-contact-on" ofType:@"png"]];
+		mailButton = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"mail-button" ofType:@"png"]];
+		background = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"background" ofType:@"png"]];
+
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadedItem:) name:@"LEIsLoaded" object:nil];
+	}
+
 	return self;
 }
 
--(void) run
+- (void)run
 {
 	LoaderElement *le;
 	while ([_buffer count] > 0 && _active < _limit)
@@ -47,11 +50,11 @@
 	}
 }
 
--(void)loadedItem:(NSNotification*)notification
+- (void)loadedItem:(NSNotification *)notification
 {
 	_count++;
 	_active--;
-	
+
 	/*NSTimer *timer = nil;
 	timer = [NSTimer scheduledTimerWithTimeInterval: 0.2
 											 target: self
@@ -61,9 +64,9 @@
 	[self run];
 }
 
--(id) loadImageView:(UIImageView *)i withUrl:(NSString *)u
+- (id)loadImageView:(UIImageView *)i withUrl:(NSString *)u
 {
-	LoaderElement*	e = [[LoaderElement alloc] initWithImageView:i placeholder:placeholder dictionary:_dictionary andUrl:[u retain]];
+	LoaderElement *e = [[LoaderElement alloc] initWithImageView:i placeholder:placeholder dictionary:_dictionary andUrl:[u retain]];
 	if (e)
 	{
 		[_buffer addObject:e];
@@ -79,7 +82,7 @@
 	[_dictionary removeAllObjects];
 }
 
--(void) free
+- (void)free
 {
 	[placeholder release];
 	[_dictionary removeAllObjects];

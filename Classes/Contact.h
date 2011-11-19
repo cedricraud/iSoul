@@ -15,41 +15,39 @@
 
 
 @interface Contact : NSObject {
-	NSString*				login;
-	NSString*				name;
-	NSString*				status;
-	NSString*				location;
-	NSString*				userdata;
-	NSMutableArray*			messages;
-	int						unread;
-	Boolean					root;
-	
-	UIImageView*			_statusImageView;
-	UIImageView*			_picture;
-	UIImageView*			_pictureBorder;
-	UIButton*				_button;
-	UIButton*				_deleteButton;
-	UIButton*				_mailButton;
-	UILabel*				_nameLabel;
-	UILabel*				_locationLabel;
-	UILabel*				_unreadLabel;
-    UIView*					view;
-	ImageLoader*			_imageLoader;
-	UIInterfaceOrientation	_interfaceOrientation;
+	NSString *login;
+	NSString *name;
+	NSString *status;
+	NSString *location;
+	NSString *userdata;
+	NSMutableArray *messages;
+	int unread;
+	BOOL root;
+
+	UIImageView *_statusImageView;
+	UIImageView *_picture;
+	UIImageView *_pictureBorder;
+	UIButton *_button;
+	UIButton *_deleteButton;
+	UIButton *_mailButton;
+	UILabel *_nameLabel;
+	UILabel *_locationLabel;
+	UILabel *_unreadLabel;
+   UIView *view;
+	ImageLoader *_imageLoader;
+	UIInterfaceOrientation _interfaceOrientation;
 }
+@property(nonatomic, retain) NSString *login;
+@property(nonatomic, retain) NSString *status;
+@property(nonatomic, retain) NSString *location;
+@property(nonatomic, retain) NSString *userdata;
+@property(nonatomic, retain) UIView *view;
+@property(nonatomic, retain) NSMutableArray *messages;
+@property(nonatomic, assign) int unread;
+@property(nonatomic, assign) BOOL root;
 
-@property (nonatomic, retain) NSString*				login;
-@property (nonatomic, retain) NSString*				status;
-@property (nonatomic, retain) NSString*				location;
-@property (nonatomic, retain) NSString*				userdata;
-@property (nonatomic, retain) UIView*				view;
-@property (nonatomic, retain) NSMutableArray*		messages;
-@property					  int					unread;
-@property					  Boolean				root;
-
-
-- (id)initWithLogin:(NSString*)l imageLoader:(ImageLoader*)i;
-- (id)updateWithLogin:(NSString*)l;
+- (id)initWithLogin:(NSString *)l imageLoader:(ImageLoader *)i;
+- (id)updateWithLogin:(NSString *)l;
 - (void)setOrientation:(UIInterfaceOrientation)orientation;
 - (void)loadPicture;
 

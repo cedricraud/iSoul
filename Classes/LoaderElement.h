@@ -9,14 +9,14 @@
 
 
 @interface LoaderElement : NSObject {
-	UIImageView*			_imageView;
-	NSString*				_url;
-	NSMutableDictionary*	_dictionary;
-	UIImage*				_placeholder;
-	bool					_hasPlaceholder;
+	UIImageView *_imageView;
+	NSString *_url;
+	NSMutableDictionary *_dictionary;
+	UIImage *_placeholder;
+	BOOL _hasPlaceholder;
 }
 
--(id) initWithImageView:(UIImageView *)i placeholder:(UIImage*)p dictionary:(NSMutableDictionary *)d andUrl:(NSString *)u;
+-(id) initWithImageView:(UIImageView *)i placeholder:(UIImage *)p dictionary:(NSMutableDictionary *)d andUrl:(NSString *)u;
 -(void) run;
 
 @end

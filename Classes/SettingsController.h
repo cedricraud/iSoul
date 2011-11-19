@@ -11,15 +11,15 @@
 
 
 @interface SettingsController : UIViewController<UITextFieldDelegate> {
-	ISAccount*				_account;
-	UITextField*			_location;
-	UITextField*			_userdata;
-	UIButton*				_button;
-	UIButton*				_disconnectButton;
+	ISAccount *_account;
+	UITextField *_location;
+	UITextField *_userdata;
+	UIButton *_button;
+	UIButton *_disconnectButton;
 	UIInterfaceOrientation	_interfaceOrientation;
 }
 
-- (id)initWithISAccount:(ISAccount*)a;
+- (id)initWithISAccount:(ISAccount *)a;
 
 
 @end

@@ -13,18 +13,15 @@
 
 
 @interface iSoulAppDelegate : NSObject <UIApplicationDelegate> {
-    UIWindow*		window;
-	ISAccount*		_account;
-	iSoulCore*			_network;
-	UIImageView*			_backgroundView;
+	UIWindow *window;
+	ISAccount *_account;
+	iSoulCore *_network;
+	UIImageView *_backgroundView;
 
-	LoginController*	_loginController;
+	LoginController *_loginController;
 
-	NavController*	_navController;
-
+	NavController *_navController;
 }
-
-@property (nonatomic, retain) IBOutlet UIWindow *window;
+@property(nonatomic, retain) IBOutlet UIWindow *window;
 
 @end
-

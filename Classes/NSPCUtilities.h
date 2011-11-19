@@ -7,7 +7,7 @@
  *
  */
 
-char*   eval_carriage_returns(char *str);
-char*   secure_carriage_returns(char *str);
-char*   url_encode(unsigned char *str);
-char*   url_decode(char *str);
+char *eval_carriage_returns(char *str);
+char *secure_carriage_returns(char *str);
+char *url_encode(unsigned char *str);
+char *url_decode(char *str);

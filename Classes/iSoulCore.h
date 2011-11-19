@@ -19,15 +19,15 @@
 
 @interface iSoulCore : NSObject
 {
-    NSFileHandle*       connection;
-    BOOL                authenticated;
-    NSString*           lastMessage;
-    NSMutableArray*     replyDataPool;
-	ISAccount*			_account;
+   NSFileHandle *connection;
+   BOOL authenticated;
+   NSString *lastMessage;
+   NSMutableArray *replyDataPool;
+	ISAccount *_account;
 }
 
 // Init and connexion
-- (id)initWithISAccount:(ISAccount*) a;
+- (id)initWithISAccount:(ISAccount *) a;
 - (void)threadConnect:(id)mainThreadOject;
 - (void)failedToConnect;
 - (void)didConnectWithFd:(id)fdNumber;

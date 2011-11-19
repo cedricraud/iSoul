@@ -11,11 +11,9 @@
 
 @implementation ConversationController
 
-- (id)initWithISAccount:(ISAccount*)a
+- (id)initWithISAccount:(ISAccount *)a
 {
-	self = [super init];
-	
-	if (self) 
+	if ((self = [super init]) != nil)
 	{
 		_account = a;
 		self.title = @"iSoul";
@@ -28,11 +26,11 @@
 
 - (void)loadView
 {
-	UIView*	myView = [[UIView alloc] init];
-	
+	UIView *myView = [[UIView alloc] init];
+
 	myView.frame = CGRectMake(0, 0, 320, 418);
 	[myView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
-	
+
 	_contactView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 58)];
 	[myView addSubview:_contactView];
 
@@ -46,7 +44,7 @@
 	_messageView.opaque = NO;
 	_messageView.scalesPageToFit = NO;
 	[myView addSubview:_messageView];
-	
+
 	_inputFrame = CGRectMake(10, 380, 300, 30);
 	_input = [[UITextField alloc] init];
 	_input.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
@@ -61,20 +59,20 @@
 	_input.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 	[_input setBackground:_account.imageLoader.contactBackgroundOn];
 	[myView addSubview:_input];
-	
+
 	self.view = myView;
 }
 
-- (NSString*)htmlForUser:(Contact*)c forMail:(Boolean)b
+- (NSString *)htmlForUser:(Contact *)c forMail:(BOOL)b
 {
-	NSMutableString* html = [[NSMutableString alloc] initWithString:@"<html><head><style type='text/css'>html, body{font-family:Sans-serif;}</style></head><body style='background: transparent none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;'>"];
-//	NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-	
+	NSMutableString *html = [[NSMutableString alloc] initWithString:@"<html><head><style type='text/css'>html, body{font-family:Sans-serif;}</style></head><body style='background: transparent none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;'>"];
+//	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+
 //	[dateFormatter setDateFormat:@"HH:mm:ss"];
-	for (ISMessage* message in c.messages)
+	for (ISMessage *message in c.messages)
 	{
-		[html appendFormat:@"<b>%@ : </b>%@<br />", 
-//				[dateFormatter stringFromDate:message.date], 
+		[html appendFormat:@"<b>%@ : </b>%@<br />",
+//				[dateFormatter stringFromDate:message.date],
 				(message.received ? c.login : _account.login),
 				[message.content stringByReplacingOccurrencesOfString:@"<" withString:@"&lt;"]];
 	}
@@ -84,7 +82,7 @@
 	return html;
 }
 
-- (void)loadMessages:(NSNotification*) notification
+- (void)loadMessages:(NSNotification *) notification
 {
 	if (_account.current)
 	{
@@ -109,37 +107,37 @@
 {
 //	_account.current.cell.frame = _frame;
 	[UIView beginAnimations:nil context:nil];
-	[UIView setAnimationDuration:0.4];	
+	[UIView setAnimationDuration:0.4];
 	[_input resignFirstResponder];
 	[UIView commitAnimations];
 	if (_account.current)
 		_account.current.unread = 0;
 }
 
--(void)sendMail:(NSNotification*)notification 
+-(void)sendMail:(NSNotification *)notification
 {
 	MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
 	picker.mailComposeDelegate = self;
-	
+
 	[picker setSubject:[NSString stringWithFormat:@"Conversation Netsoul avec %@", _account.current.login]];
-	
-	
+
+
 	// Set up recipients
 	NSArray *toRecipients = [NSArray arrayWithObject:[NSString stringWithFormat:@"%@@epitech.eu", _account.login]];
 
 	[picker setToRecipients:toRecipients];
-	
-	
+
+
 	// Fill out the email body text
 	NSString *emailBody = [self htmlForUser:_account.current forMail:YES];
 	[picker setMessageBody:emailBody isHTML:YES];
-	
+
 	[self presentModalViewController:picker animated:YES];
     [picker release];
 }
 
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error 
-{	
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
 	[self dismissModalViewControllerAnimated:YES];
 }
 
@@ -156,7 +154,7 @@
 	CGRect frame = _messageViewFrame;
 	frame.size.height -= UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? 215 : 160;
 	_messageView.frame = frame;
-	
+
 	_inputFrame = _input.frame;
 	frame = _inputFrame;
 	frame.origin.y -= UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? 215 : 160;
@@ -171,7 +169,7 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
 	[UIView beginAnimations:nil context:nil];
-	[UIView setAnimationDuration:0.4];	
+	[UIView setAnimationDuration:0.4];
 	_messageView.frame = _messageViewFrame;
 	_input.frame = _inputFrame;
 	[UIView commitAnimations];
@@ -199,7 +197,7 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
 	[UIView beginAnimations:nil context:nil];
-	[UIView setAnimationDuration:0.4];	
+	[UIView setAnimationDuration:0.4];
 	_messageView.alpha = 1;
 	[UIView commitAnimations];
 }

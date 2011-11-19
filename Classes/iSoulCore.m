@@ -8,11 +8,11 @@
 
 #import "iSoulCore.h"
 
-static NSMutableDictionary* gl_functions = nil;
+static NSMutableDictionary *gl_functions = nil;
 
 @implementation iSoulCore
 
-- (id)initWithISAccount:(ISAccount*) a;
+- (id)initWithISAccount:(ISAccount *) a;
 {
     if (self = [super init])
     {
@@ -21,7 +21,7 @@ static NSMutableDictionary* gl_functions = nil;
         lastMessage    = nil;
         replyDataPool  = nil;
 		_account = a;
-		
+
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connect:) name:@"ISC/connect" object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disconnect:) name:@"ISC/disconnect" object:nil];
 
@@ -39,13 +39,13 @@ static NSMutableDictionary* gl_functions = nil;
 
 - (void)threadConnect:(id)mainThreadOject
 {
-    // NSData*         address;
-    // NSSocketPort*   sock;
+    // NSData *address;
+    // NSSocketPort *sock;
 	struct sockaddr_in stSockAddr;
     int             s;
     int             cs;
 	struct hostent *host;
-	
+
     // Dirty hack to wake up cellular network (sockets don't)
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	[NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://hxt.fr/isoul/void"] encoding: NSASCIIStringEncoding  error: nil];
@@ -53,12 +53,12 @@ static NSMutableDictionary* gl_functions = nil;
 
     //sock = [[NSSocketPort alloc] initRemoteWithTCPPort:4242	host:@"ns-server.epita.fr"];
 	memset(&stSockAddr, 0, sizeof(stSockAddr));
-	
+
     stSockAddr.sin_family = AF_INET;
     stSockAddr.sin_port = htons(4242);
 	host = gethostbyname("ns-server.epita.fr");
 
-	
+
     if (host == NULL)
     {
 		NSLog(@"host fail");
@@ -67,7 +67,7 @@ static NSMutableDictionary* gl_functions = nil;
         [NSThread exit];
     }
 	stSockAddr.sin_addr.s_addr = ((struct in_addr *)*host->h_addr_list)->s_addr;
-	
+
     s = socket(AF_INET, SOCK_STREAM, 0);
     if (s < 0)
     {
@@ -109,7 +109,7 @@ static NSMutableDictionary* gl_functions = nil;
     [fdNumber release];
 	[_account connectionProgressStep:NETSOUL_STEP_CONNECTION_ESTABLISHED];
 
-	
+
     connection = [[NSFileHandle alloc] initWithFileDescriptor:fd closeOnDealloc:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receiveMessageFromSocket:)
@@ -117,8 +117,8 @@ static NSMutableDictionary* gl_functions = nil;
                                                object:connection];
     [connection readInBackgroundAndNotify];
     //[connection readInBackgroundAndNotifyForModes:[NSArray arrayWithObjects: NSEventTrackingRunLoopMode, NSModalPanelRunLoopMode, NSDefaultRunLoopMode, nil]];
-    
-    replyDataPool = [[NSMutableArray alloc] init];    
+
+    replyDataPool = [[NSMutableArray alloc] init];
 }
 
 - (void)connect
@@ -126,7 +126,7 @@ static NSMutableDictionary* gl_functions = nil;
     [NSThread detachNewThreadSelector:@selector(threadConnect:) toTarget:self withObject:self];
 }
 
-- (void)connect:(NSNotification*)notification
+- (void)connect:(NSNotification *)notification
 {
 	[self connect];
 }
@@ -150,7 +150,7 @@ static NSMutableDictionary* gl_functions = nil;
     return YES;
 }
 
-- (void)disconnect:(NSNotification*)notification
+- (void)disconnect:(NSNotification *)notification
 {
 	[self disconnect];
 }
@@ -165,11 +165,11 @@ static NSMutableDictionary* gl_functions = nil;
 
 - (void)receiveMessageFromSocket:(NSNotification *)notification
 {
-    NSData*         messageData;
-    NSString*       message;
-    NSString*       tempMessage;
-    NSString*       command;
-    NSMutableArray* array;
+    NSData *messageData;
+    NSString *message;
+    NSString *tempMessage;
+    NSString *command;
+    NSMutableArray *array;
     SEL             selector;
 
     messageData = [[notification userInfo] objectForKey:NSFileHandleNotificationDataItem];
@@ -204,8 +204,8 @@ static NSMutableDictionary* gl_functions = nil;
     }
     [array removeLastObject];
 
-    NSEnumerator*   enumerator = [array objectEnumerator];
-    NSString*       line;
+    NSEnumerator *enumerator = [array objectEnumerator];
+    NSString *line;
     while ((line = [enumerator nextObject]))
     {
         NSLog(@"[AdiumSoul] Received line '%@'", line);
@@ -234,7 +234,7 @@ static NSMutableDictionary* gl_functions = nil;
     {
         message = [message stringByAppendingString:@"\n"];
     }
-    NSData* messageData = [NSData dataWithBytes:[message UTF8String] length:[message length]];
+    NSData *messageData = [NSData dataWithBytes:[message UTF8String] length:[message length]];
     [connection writeData:messageData];
 }
 
@@ -243,7 +243,7 @@ static NSMutableDictionary* gl_functions = nil;
 
 - (BOOL)sendMessage:(NSString *)message toUser:(NSString *)user
 {
-    NSString*   encodedMessage = [NSPMessages sendMessage:message toUser:user];
+    NSString *encodedMessage = [NSPMessages sendMessage:message toUser:user];
 
     if (!encodedMessage)
     {
@@ -253,10 +253,10 @@ static NSMutableDictionary* gl_functions = nil;
     return YES;
 }
 
-- (void)sendMessage:(NSNotification*)notification
+- (void)sendMessage:(NSNotification *)notification
 {
-	NSString* message = [[notification userInfo] objectForKey:@"message"];
-	NSString* user = [[notification userInfo] objectForKey:@"user"];
+	NSString *message = [[notification userInfo] objectForKey:@"message"];
+	NSString *user = [[notification userInfo] objectForKey:@"user"];
 	[self sendMessage:message toUser:user];
 }
 
@@ -277,9 +277,9 @@ static NSMutableDictionary* gl_functions = nil;
     [self watchUsers:[NSArray arrayWithObject:user]];
 }
 
-- (void)watchUserN:(NSNotification*)notification
+- (void)watchUserN:(NSNotification *)notification
 {
-	NSString* user = [[notification userInfo] objectForKey:@"user"];
+	NSString *user = [[notification userInfo] objectForKey:@"user"];
 	[self watchUser:user];
 	[self whoUser:user];
 }
@@ -334,17 +334,17 @@ static NSMutableDictionary* gl_functions = nil;
 
 - (void)userCommand:(NSString *)message
 {
-    NSArray*    arr = [message componentsSeparatedByString:@" | "];
-    NSArray*    firstPart = [[arr objectAtIndex:0] componentsSeparatedByString:@":"];
-    NSArray*    secondPart = [[arr objectAtIndex:1] componentsSeparatedByString:@" "];
-    NSString*   socketId = [firstPart objectAtIndex:0];
-    NSString*   login = [firstPart objectAtIndex:3];
-    NSString*   command = [secondPart objectAtIndex:0];
+    NSArray *arr = [message componentsSeparatedByString:@" | "];
+    NSArray *firstPart = [[arr objectAtIndex:0] componentsSeparatedByString:@":"];
+    NSArray *secondPart = [[arr objectAtIndex:1] componentsSeparatedByString:@" "];
+    NSString *socketId = [firstPart objectAtIndex:0];
+    NSString *login = [firstPart objectAtIndex:3];
+    NSString *command = [secondPart objectAtIndex:0];
     SEL         selector;
-    
+
     NSRange range = [login rangeOfString:@"@"];
     login = [login substringToIndex:range.location];
-    
+
 	NSLog(@"received command : %@", command);
     selector = [iSoulCore selectorForCommand:command];
     if (selector != (SEL)0)
@@ -355,8 +355,8 @@ static NSMutableDictionary* gl_functions = nil;
 
 - (void)firstReply:(NSString *)message
 {
-    NSArray*              arr;
-    NSMutableDictionary*  authenticationValues;
+    NSArray *arr;
+    NSMutableDictionary *authenticationValues;
 
     arr = [message componentsSeparatedByString:@" "];
     /*
@@ -374,7 +374,7 @@ static NSMutableDictionary* gl_functions = nil;
     [authenticationValues setObject:[arr objectAtIndex:3] forKey:@"clientPort"];
     [authenticationValues setObject:[arr objectAtIndex:4] forKey:@"timestamp"];
     [_account connectionProgressStep:NETSOUL_STEP_AUTH_AG_REQUEST];
-	
+
     [self waitReplyToSendMessage:@"authenticate:" withObject:authenticationValues];
     [self sendMessageToSocket:[NSPMessages askAuthentication] appendNewLine:YES];
 }
@@ -406,8 +406,8 @@ static NSMutableDictionary* gl_functions = nil;
     [self sendMessageToSocket:[NSPMessages setState:[_account status]]
                 appendNewLine:YES];
     authenticated = YES;
-	
-	for (Contact* c in _account.contacts)
+
+	for (Contact *c in _account.contacts)
 	{
 		[self watchUser:c.login];
 		[self whoUser:c.login];
@@ -423,7 +423,7 @@ static NSMutableDictionary* gl_functions = nil;
 
 - (void)recvMessage:(NSDictionary *)data
 {
-    NSString*   message = [[data objectForKey:@"content"] objectAtIndex:1];
+    NSString *message = [[data objectForKey:@"content"] objectAtIndex:1];
 
     [_account receiveMessage:[NSPMessages decode:message] fromUser:[data objectForKey:@"login"]];
 }
@@ -441,10 +441,10 @@ static NSMutableDictionary* gl_functions = nil;
 
 - (void)recvChangeStatus:(NSDictionary *)data
 {
-    NSString*   stateInfos = [[data objectForKey:@"content"] objectAtIndex:1];
-    NSRange     range = [stateInfos rangeOfString:@":"];
-    NSString*   state = [stateInfos substringToIndex:range.location];
-    
+    NSString *stateInfos = [[data objectForKey:@"content"] objectAtIndex:1];
+    NSRange range = [stateInfos rangeOfString:@":"];
+    NSString *state = [stateInfos substringToIndex:range.location];
+
     [_account contact:[data objectForKey:@"login"] changedState:state];
 }
 
@@ -471,7 +471,7 @@ static NSMutableDictionary* gl_functions = nil;
 
 - (void)waitReplyToSendMessage:(NSString *)message withObject:(id)object orErrorMessage:(NSString *)error
 {
-    NSMutableDictionary*  dic;
+    NSMutableDictionary *dic;
 
     dic = [[NSMutableDictionary alloc] init];
     if (message)
@@ -499,7 +499,7 @@ static NSMutableDictionary* gl_functions = nil;
     if ([replyDataPool count] == 0)
         return ;
 
-    NSMutableDictionary* data = [replyDataPool objectAtIndex:0];
+    NSMutableDictionary *data = [replyDataPool objectAtIndex:0];
     [replyDataPool removeObjectAtIndex:0];
     // Netsoul replies 2 is everything is OK, interesting isn't it?
     if ([message intValue] == 2)

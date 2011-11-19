@@ -25,7 +25,7 @@
 }
 
 
-NSString*	md5( NSString *str )
+NSString *md5(NSString *str)
 {
 	const char *cStr = [str UTF8String];
 	unsigned char result[CC_MD5_DIGEST_LENGTH];
@@ -42,10 +42,10 @@ NSString*	md5( NSString *str )
 
 + (NSString *)standardAuthentication:(NSDictionary *)connectionValues
 {
-    NSString*       hash_string;
-//    NSData*         data;
-    //char            hashMd5[32];
-    NSString*		encoding;
+    NSString *hash_string;
+//    NSData *data;
+    //char hashMd5[32];
+    NSString *encoding;
     //int             i;
 
     hash_string = [NSString stringWithFormat:@"%@-%@/%@%@",
@@ -74,17 +74,17 @@ NSString*	md5( NSString *str )
 
 + (NSString *)decode:(NSString *)aMsg
 {
-//    char*       msg;
-//    char*       res;
-//    NSString*   message;
+//    char *msg;
+//    char *res;
+//    NSString *message;
 
-//    msg = strdup([[(NSString*)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL, (CFStringRef)aMsg, CFSTR(""), kCFStringEncodingISOLatin1) autorelease] cStringUsingEncoding:NSISOLatin1StringEncoding]);
+//    msg = strdup([[(NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL, (CFStringRef)aMsg, CFSTR(""), kCFStringEncodingISOLatin1) autorelease] cStringUsingEncoding:NSISOLatin1StringEncoding]);
 //    res = eval_carriage_returns(msg);
 //    message = [NSString stringWithCString:res encoding:NSISOLatin1StringEncoding];
 //    free(msg);
 //    return message;
-//    return [(NSString*)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL, (CFStringRef)aMsg, CFSTR(""), kCFStringEncodingISOLatin1) autorelease];
-    return (NSString*)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL, (CFStringRef)aMsg, CFSTR(""), kCFStringEncodingISOLatin1);
+//    return [(NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL, (CFStringRef)aMsg, CFSTR(""), kCFStringEncodingISOLatin1) autorelease];
+    return (NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL, (CFStringRef)aMsg, CFSTR(""), kCFStringEncodingISOLatin1);
 }
 
 + (NSString *)encode:(NSString *)aMsg
@@ -95,7 +95,7 @@ NSString*	md5( NSString *str )
 
 + (NSString *)sendMessage:(NSString *)message toUser:(NSString *)user
 {
-    NSString*   encodedMsg = [NSPMessages encode:message];
+    NSString *encodedMsg = [NSPMessages encode:message];
 
     if (!encodedMsg)
     {
@@ -127,7 +127,7 @@ NSString*	md5( NSString *str )
 
 + (NSString *)listUsers:(NSArray *)users
 {
-    NSString*   userList = [NSPMessages userListFromArray:users];
+    NSString *userList = [NSPMessages userListFromArray:users];
 
     if (userList == nil)
     {
@@ -138,7 +138,7 @@ NSString*	md5( NSString *str )
 
 + (NSString *)whoUsers:(NSArray *)users
 {
-    NSString*   userList = [NSPMessages userListFromArray:users];
+    NSString *userList = [NSPMessages userListFromArray:users];
 
     if (userList == nil)
     {
@@ -154,7 +154,7 @@ NSString*	md5( NSString *str )
 
 + (NSString *)watchUsers:(NSArray *)users
 {
-    NSString*   userList = [NSPMessages userListFromArray:users];
+    NSString *userList = [NSPMessages userListFromArray:users];
 
     if (userList == nil)
         return nil;

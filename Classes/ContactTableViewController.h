@@ -11,14 +11,13 @@
 #import	"ISAccount.h"
 
 @interface ContactTableViewController : UITableViewController<UITextFieldDelegate> {
-	ISAccount*			_account;
-	UITableViewCell*	_addCell;
-	UIButton*			_addPicture;
-	UILabel*			_addLabel;
-	UITextField*		_addTextField;
-	CGRect				_frame;
+	ISAccount *_account;
+	UITableViewCell *_addCell;
+	UIButton *_addPicture;
+	UILabel *_addLabel;
+	UITextField *_addTextField;
+	CGRect _frame;
 }
-
-- (id)initWithStyle:(UITableViewStyle)style account:(ISAccount*)a;
+- (id)initWithStyle:(UITableViewStyle)style account:(ISAccount *)a;
 
 @end

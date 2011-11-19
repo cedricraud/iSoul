@@ -13,24 +13,24 @@
 @synthesize window;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
-{	
+{
 	application.statusBarHidden = YES;
-	
+
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alertMessage:) name:@"ISC/newMessage" object:nil];
-	
+
 	_account = [[ISAccount alloc] init];
 
 	_network = [[iSoulCore alloc] initWithISAccount:_account];
-	
+
 	_loginController = [[LoginController alloc] initWithISAccount:_account];
 
 	_navController = [[NavController alloc] initWithRootViewController:_loginController account:_account];
-	
+
 	_backgroundView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
 	[_backgroundView setImage:_account.imageLoader.background];
 	_backgroundView.alpha = 0.4;
 	[window addSubview:_backgroundView];
-	
+
 	[window addSubview:_navController.view];
     [window makeKeyAndVisible];
 }
@@ -43,7 +43,7 @@
 	[UIView commitAnimations];
 }
 
-- (void)alertMessage:(NSNotification*)notification
+- (void)alertMessage:(NSNotification *)notification
 {
 	if ([notification userInfo])
 	{
@@ -58,7 +58,7 @@
 
 - (void)dealloc {
 	[_account save];
-	
+
 	[_network disconnect];
 	[_network release];
 	[_account release];

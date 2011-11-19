@@ -10,16 +10,16 @@
 #import "ISAccount.h"
 
 @interface LoginController : UIViewController<UITextFieldDelegate> {
-	ISAccount*					_account;
-	UITextField*				_login;
-	UITextField*				_password;
-	UILabel*					_connecting;
-	UIImageView*				_picture;
-	UIImageView*				_pictureBorder;
-	UIButton*					_button;
-	UILabel*					_label;
+	ISAccount *_account;
+	UITextField *_login;
+	UITextField *_password;
+	UILabel *_connecting;
+	UIImageView *_picture;
+	UIImageView *_pictureBorder;
+	UIButton *_button;
+	UILabel *_label;
 }
 
-- (id)initWithISAccount:(ISAccount*)a;
+- (id)initWithISAccount:(ISAccount *)a;
 
 @end

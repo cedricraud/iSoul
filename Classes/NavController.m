@@ -11,10 +11,10 @@
 
 @implementation NavController
 
-- (id) initWithRootViewController:(UIViewController *)view account:(ISAccount*)a
+- (id) initWithRootViewController:(UIViewController *)view account:(ISAccount *)a
 {
 	[super initWithRootViewController:view];
-	
+
 	_account = a;
 	_settingsController = [[SettingsController alloc] initWithISAccount:_account];
 	_contactListController = [[ContactListController alloc] initWithISAccount:_account];
@@ -22,28 +22,28 @@
 	_interfaceOrientation = self.interfaceOrientation;
 	self.delegate = self;
 	self.navigationBarHidden = YES;
-	
+
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disconnect:) name:@"ISC/disconnect" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didConnect:) name:@"ISC/didConnect" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewConversation:) name:@"ISC/viewConversation" object:nil];
 	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showPanel:) name:@"ISC/newMessage" object:nil];
-	
-	
+
+
 	/*
 	[self pushViewController:_contactListController animated:YES];
 	_account.login = @"raud_c";
 	*/
-	
+
 	_frame = CGRectMake(0, 0, 320, 480);
 	self.view.frame = _frame;
-	
+
 	self.view.backgroundColor = [UIColor clearColor];
-	
+
 	return self;
 }
 
 /*
-- (void)showPanel:(NSNotification*)notification
+- (void)showPanel:(NSNotification *)notification
 {
 	[UIView beginAnimations:nil context:nil];
 	[UIView setAnimationDuration:0.4];
@@ -51,16 +51,16 @@
 	frame.origin.y += 30;
 	frame.size.height -= 30;
 	self.view.frame = frame;
-	[UIView commitAnimations];	
-	
+	[UIView commitAnimations];
+
 }
 
-- (void)hidePanel:(NSNotification*)notification
+- (void)hidePanel:(NSNotification *)notification
 {
 	[UIView beginAnimations:nil context:nil];
 	[UIView setAnimationDuration:0.4];
 	self.view.frame = _frame;
-	[UIView commitAnimations];		
+	[UIView commitAnimations];
 }
 */
 
@@ -81,20 +81,20 @@
 	return [super popViewControllerAnimated:animated];
 }
 
-- (void)didConnect:(NSNotification*) notification
-{	
+- (void)didConnect:(NSNotification *) notification
+{
 	[self pushViewController:_contactListController animated:YES];
 	NSLog(@"didConnect");
 }
 
-- (void)disconnect:(NSNotification*) notification
+- (void)disconnect:(NSNotification *) notification
 {
 	if ([self.viewControllers count] == 3)
 		[_contactListController.view addSubview:_account.current.view];
 	[self popToRootViewControllerAnimated:YES];
 }
 
-- (void)viewConversation:(NSNotification*) notification
+- (void)viewConversation:(NSNotification *) notification
 {
 	NSLog(@"viewConversation");
 	if ([self.viewControllers count] == 3)
@@ -102,19 +102,19 @@
 		[self popViewControllerAnimated:NO];//UIInterfaceOrientationIsPortrait(self.interfaceOrientation)];
 		return;
 	}
-	NSString* user = [[notification userInfo] objectForKey:@"user"];
+	NSString *user = [[notification userInfo] objectForKey:@"user"];
 	_account.current = [_account getContact:user];
 	_contactFrame = _account.current.view.frame;
 	_contactFrame.origin.y -= [_contactListController getOffset];
 	[self.view addSubview:_account.current.view];
 	_account.current.view.frame = _contactFrame;
-	
+
 	[UIView beginAnimations:nil context:nil];
 	[UIView setAnimationDuration:0.4];
 	_account.current.view.frame = CGRectMake(0, -4, UIInterfaceOrientationIsPortrait(_interfaceOrientation) ? 320 : 480, 60);
 	[UIView commitAnimations];
-	
-	
+
+
 	if (_account.current.root)
 		[self pushViewController:_settingsController animated:YES];
 	else
@@ -146,7 +146,7 @@
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	
+
 	// Release any cached data, images, etc that aren't in use.
 }
 

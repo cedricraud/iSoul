@@ -11,16 +11,15 @@
 #import "ISAccount.h"
 
 @interface ConversationController : UIViewController<UIWebViewDelegate, UITextFieldDelegate, MFMailComposeViewControllerDelegate> {
-	ISAccount*		_account;
-	UIWebView*		_messageView;
-	CGRect			_messageViewFrame;
-	UITextField*	_input;
-	CGRect			_inputFrame;
-	UIView*			_contactView;
-	CGRect			_frame;
+	ISAccount *_account;
+	UIWebView *_messageView;
+	CGRect _messageViewFrame;
+	UITextField *_input;
+	CGRect _inputFrame;
+	UIView *_contactView;
+	CGRect _frame;
 }
-
-- (id)initWithISAccount:(ISAccount*)a;
+- (id)initWithISAccount:(ISAccount *)a;
 
 
 @end

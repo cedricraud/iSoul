@@ -13,15 +13,15 @@
 #import "SettingsController.h"
 
 @interface NavController : UINavigationController<UINavigationControllerDelegate>{
-	ISAccount*				_account;
-	ContactListController*	_contactListController;
-	ConversationController*	_conversationController;
-	SettingsController*		_settingsController;
+	ISAccount *_account;
+	ContactListController *_contactListController;
+	ConversationController *_conversationController;
+	SettingsController *_settingsController;
 	CGRect					_frame;
 	CGRect					_contactFrame;
 	UIInterfaceOrientation	_interfaceOrientation;
 }
 
-- (id) initWithRootViewController:(UIViewController *)view account:(ISAccount*)a;
+- (id) initWithRootViewController:(UIViewController *)view account:(ISAccount *)a;
 
 @end
