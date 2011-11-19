@@ -1,0 +1,11 @@
+iSoul is a netsoul client for iOS
+
+Features:
+- Auto-connect
+- Contact-list
+- Settings
+- Multi-account
+- Landscape mode
+- Send a conversation by mail
+
+Includes the Adiumsoul 0.9b library: http://code.google.com/p/adiumsoul/
