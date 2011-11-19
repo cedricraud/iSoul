@@ -10,51 +10,59 @@
 
 @implementation LoaderElement
 
--(id) initWithImageView:(UIImageView *)i placeholder:(UIImage *)p dictionary:(NSMutableDictionary *)d andUrl:(NSString *)u
+- (id)initWithImageView:(UIImageView *)i placeholder:(UIImage *)p dictionary:(NSMutableDictionary *)d andUrl:(NSString *)u
 {
-	if (i == nil)
-		return nil;
-	_imageView = [i retain];
-	_url = [NSString stringWithString: u];
-	_dictionary = d;
-	_placeholder = p;
-	_hasPlaceholder = NO;
-	if (_imageView.image == nil)
-	{
-		[_placeholder retain];
-		[_imageView setImage:_placeholder];
-		_hasPlaceholder = YES;
+	if ((self = [super init]) != nil) {
+		if (i == nil) {
+			[self release];
+			return nil;
+		}
+		
+		_imageView = [i retain];
+		_url = [u copy];
+		_dictionary = [d retain];
+		_placeholder = [p retain];
+		_hasPlaceholder = NO;
+		if (_imageView.image == nil) {
+			[_imageView setImage:_placeholder];
+			_hasPlaceholder = YES;
+		}
 	}
+	
 	return self;
 }
 
--(void) subRun
+- (void)dealloc {
+	[_imageView release];
+	[_url release];
+	[_dictionary release];
+	[_placeholder release];
+	
+	[super dealloc];
+}
+
+- (void)subRun
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-	if (_url == nil)
-		return;
+	if (_url == nil) return;
+	
 	//NSLog(@"Start %@", _url);
 	NSURL *u = nil;
 	NSData *imageData = nil;
 	if ((u = [NSURL URLWithString:_url]))
-		imageData = [[[NSData alloc]initWithContentsOfURL:u] retain];
+		imageData = [NSData dataWithContentsOfURL:u];
 
-	if (imageData && [imageData length] != 0)
-	{
+	if (imageData.length > 0) {
 		[_dictionary setObject:imageData forKey:_url];
 
-		UIImage *image = nil;
-		if (!(image = [[[UIImage alloc] initWithData:imageData] retain]))
-			return;
-
-		[_imageView setImage:image];
+		UIImage *image = [UIImage imageWithData:imageData];
+		_imageView.image = image;
 
 		if (_imageView.image.size.width == 100)
-			[_imageView setImage:_placeholder];
+			_imageView.image = _placeholder;
 
-		if (_hasPlaceholder && _imageView.alpha == 1)
-		{
+		if (_hasPlaceholder && _imageView.alpha == 1) {
 			_imageView.alpha = 0;
 			[UIView beginAnimations:nil context:NULL];
 			[UIView setAnimationDuration:0.5];
@@ -75,7 +83,7 @@
 	_imageView.alpha = 1;
 	if (imageData != nil)
 	{
-		[_imageView setImage:[[UIImage alloc] initWithData:imageData]];
+		[_imageView setImage:[UIImage imageWithData:imageData]];
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"LEIsLoaded" object:self];
 	}
 	else

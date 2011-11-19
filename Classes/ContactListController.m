@@ -13,19 +13,35 @@
 
 - (id)initWithISAccount:(ISAccount *)a
 {
-	if ((self = [super init]) != nil)
-	{
-		_account = a;
-		self.title = @"iSoul";
+	if ((self = [super init]) != nil) {
+		_account = [a retain];
+		self.title = [@"iSoul" retain];
 		self.view = nil;
+		
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteContact:) name:@"ISC/deleteContact" object:nil];
-
 	}
+	
 	return self;
+}
+
+- (void)dealloc
+{
+	[_account release];
+	
+	[_scrollView release];
+	[_addCell release];
+	[_addButton release];
+	[_addPicture release];
+	[_addTextField release];
+	self.view = nil;
+	
+	[super dealloc];
 }
 
 - (void)loadView
 {
+	if (self.isViewLoaded) return;
+	
 	UIView *myView = [[UIView alloc] init];
 
 	myView.frame = CGRectMake(0, 0, 320, 480);
@@ -67,8 +83,7 @@
 	_scrollView.alwaysBounceVertical = YES;
 	_scrollView.delegate = self;
 
-	for (Contact *c in _account.contacts)
-	{
+	for (Contact *c in _account.contacts) {
 		[_scrollView addSubview:c.view];
 		[c loadPicture];
 	}
@@ -79,6 +94,7 @@
 	[myView addSubview:_scrollView];
 
 	self.view = myView;
+	[myView release];
 }
 
 - (void)deleteContact:(NSNotification *)notification
@@ -92,7 +108,7 @@
 
 - (void)reposition
 {
-	int	i = 0;
+	int i = 0;
 	switch (_interfaceOrientation) {
 		case UIInterfaceOrientationPortrait:
 		case UIInterfaceOrientationPortraitUpsideDown:
@@ -256,13 +272,9 @@
 
 }
 
-- (void)viewDidUnload {
+- (void)viewDidUnload
+{
 
-}
-
-
-- (void)dealloc {
-    [super dealloc];
 }
 
 #pragma mark ScrollViewDelegate

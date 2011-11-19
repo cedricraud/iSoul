@@ -12,7 +12,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		860EC2740F7C81C100C727C5 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 860EC2730F7C81C100C727C5 /* Contact.m */; };
-		8610A42B0F75214500B3E443 /* NSPCUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 8610A4270F75214500B3E443 /* NSPCUtilities.c */; };
 		8610A42C0F75214500B3E443 /* NSPMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 8610A42A0F75214500B3E443 /* NSPMessages.m */; };
 		8610A4A40F7533C100B3E443 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8610A4A30F7533C100B3E443 /* CFNetwork.framework */; };
 		8610A50D0F753A2800B3E443 /* iSoulCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8610A50C0F753A2800B3E443 /* iSoulCore.m */; };
@@ -53,10 +52,9 @@
 		1D6058910D05DD3D006BFB54 /* iSoul.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSoul.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7B13B1FA1477615D00E8B6A0 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = Classes/Utils.h; sourceTree = "<group>"; };
 		860EC2720F7C81C100C727C5 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		860EC2730F7C81C100C727C5 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
-		8610A4270F75214500B3E443 /* NSPCUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NSPCUtilities.c; sourceTree = "<group>"; };
-		8610A4280F75214500B3E443 /* NSPCUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSPCUtilities.h; sourceTree = "<group>"; };
 		8610A4290F75214500B3E443 /* NSPMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSPMessages.h; sourceTree = "<group>"; };
 		8610A42A0F75214500B3E443 /* NSPMessages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSPMessages.m; sourceTree = "<group>"; };
 		8610A4A30F7533C100B3E443 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -137,8 +135,6 @@
 				86B146CC0F781694006F038B /* ISAccount.m */,
 				8610A50B0F753A2800B3E443 /* iSoulCore.h */,
 				8610A50C0F753A2800B3E443 /* iSoulCore.m */,
-				8610A4270F75214500B3E443 /* NSPCUtilities.c */,
-				8610A4280F75214500B3E443 /* NSPCUtilities.h */,
 				8610A4290F75214500B3E443 /* NSPMessages.h */,
 				8610A42A0F75214500B3E443 /* NSPMessages.m */,
 				B2485B1D1427F9CC0048E86C /* ContactListController.h */,
@@ -186,6 +182,7 @@
 			children = (
 				B2B00DE21427FA3D009F69CE /* iSoul_Prefix.pch */,
 				B2B00DE31427FA3D009F69CE /* main.m */,
+				7B13B1FA1477615D00E8B6A0 /* Utils.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -305,7 +302,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D3623260D0F684500981E51 /* iSoulAppDelegate.m in Sources */,
-				8610A42B0F75214500B3E443 /* NSPCUtilities.c in Sources */,
 				8610A42C0F75214500B3E443 /* NSPMessages.m in Sources */,
 				8610A50D0F753A2800B3E443 /* iSoulCore.m in Sources */,
 				86B146CD0F781694006F038B /* ISAccount.m in Sources */,
@@ -329,7 +325,6 @@
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -344,7 +339,6 @@
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Classes/iSoul_Prefix.pch;
@@ -369,7 +363,6 @@
 		860CAC5F101E696D003A39C5 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

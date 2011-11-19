@@ -13,12 +13,10 @@
 
 - (id)initWithISAccount:(ISAccount *)a
 {
-	self = [super init];
-
-	if (self)
+	if ((self = [super init]) != nil)
 	{
-		_account = a;
-		self.title = @"Login";
+		_account = [a retain];
+		self.title = [@"Login" retain];
 		self.view = nil;
 
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDisconnect:) name:@"ISC/didDisconnect" object:nil];
@@ -26,6 +24,21 @@
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hostFail:) name:@"ISC/hostFail" object:nil];
 	}
 	return self;
+}
+
+- (void)dealloc
+{
+	[_account release];
+	[_login release];
+	[_password release];
+	[_connecting release];
+	[_picture release];
+	[_pictureBorder release];
+	[_button release];
+	[_label release];
+	self.view = nil;
+	
+	[super dealloc];
 }
 
 - (void)layoutSubviews
@@ -86,11 +99,13 @@
 
 - (void)loadView
 {
+	if (self.isViewLoaded) return;
+	
 	UIView *myView = [[UIView alloc] init];
 
 	_button			= [[UIButton alloc] init];
 	_label			= [[UILabel alloc] init];
-	_picture		= [[UIImageView alloc] init];
+	_picture		   = [[UIImageView alloc] init];
 	_pictureBorder	= [[UIImageView alloc] init];
 	_login			= [[UITextField alloc] init];
 	_password		= [[UITextField alloc] init];
@@ -107,6 +122,7 @@
 	[myView addSubview:_connecting];
 
 	self.view = myView;
+	[myView release];
 }
 
 - (void)connect
@@ -229,11 +245,5 @@
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 }
-
-
-- (void)dealloc {
-    [super dealloc];
-}
-
 
 @end

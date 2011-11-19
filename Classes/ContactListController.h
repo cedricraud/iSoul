@@ -13,8 +13,8 @@
 	ISAccount *_account;
 
 	UIScrollView *_scrollView;
-	int							_loadedContact;
-	CGRect						_listFrame;
+	int _loadedContact;
+	CGRect _listFrame;
 	UIView *_addCell;
 	UIButton *_addButton;
 	UIImageView *_addPicture;

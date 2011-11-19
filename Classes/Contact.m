@@ -16,22 +16,25 @@
 - (id)initWithLogin:(NSString *)l imageLoader:(ImageLoader *)i
 {
 	if ((self = [super init]) != nil) {
-		login = l;
-		name = login;
-		status = @"actif";
+		login = [l copy];
+		name = [login copy];
+		status = [@"actif" retain];
 		location = nil;
 		userdata = nil;
 		messages = [[NSMutableArray alloc] init];
 		root = NO;
-		_imageLoader = i;
+		_imageLoader = [i retain];
 		_interfaceOrientation = UIInterfaceOrientationPortrait;
 
 		view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
 		view.alpha = 0;
 		view.clearsContextBeforeDrawing = NO;
 
-		if (!view)
+		if (!view) {
+			NSLog(@"*** Warning: cannot init view while initing a Contact. Returning nil.");
+			[self release];
 			return nil;
+		}
 
 		_button = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 300, 40)];
 		_button.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -56,7 +59,6 @@
 		[_mailButton addTarget:self action:@selector(sendMail) forControlEvents:UIControlEventTouchDown];
 		[view addSubview:_mailButton];
 
-
 		_picture = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 34, 40)];
 		_picture.image = nil;
 		[view addSubview:_picture];
@@ -67,7 +69,7 @@
 		 [view addSubview:_pictureBorder];*/
 
 		_statusImageView = [[UIImageView alloc] initWithFrame:CGRectMake(34, 40, 20, 20)];
-		[_statusImageView setImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"offline" ofType:@"png"]]];
+		[_statusImageView setImage:[UIImage imageNamed:@"offline.png"]];
 		_statusImageView.alpha = 0;
 		[view addSubview:_statusImageView];
 
@@ -93,11 +95,35 @@
 		_unreadLabel.text = @"";
 		_unreadLabel.alpha = 0;
 		[view addSubview:_unreadLabel];
-
-		self.login = l;
+		
+		self.login = login; // Do not remove: refreshes the view...
 	}
 
 	return self;
+}
+
+- (void)dealloc
+{
+	[login release];
+	[name release];
+	[status release];
+	[location release];
+	[userdata release];
+	[messages release];
+	
+	[_statusImageView release];
+	[_picture release];
+	[_pictureBorder release];
+	[_button release];
+	[_deleteButton release];
+	[_mailButton release];
+	[_nameLabel release];
+	[_locationLabel release];
+	[_unreadLabel release];
+   [view release];
+	[_imageLoader release];
+	
+	[super dealloc];
 }
 
 - (void)cancelSwipe
@@ -133,11 +159,6 @@
 	[UIView commitAnimations];
 }
 
-- (void)setView:(UIView *)_value
-{
-
-}
-
 - (UIView *)view
 {
 	return view;
@@ -151,13 +172,13 @@
 
 - (void)setLocation:(NSString *)_value
 {
-	if (!_value)
-		location = @"";
-	else
-		if (location)
-			location = [NSString stringWithFormat:@"%@, %@", location, _value];
-		else
-			location = _value;
+	if (!location) location = [NSString new];
+	[location autorelease];
+	if (_value) {
+		if (location.length > 0) location = [location stringByAppendingString:@", "];
+		location = [location stringByAppendingString:_value];
+	}
+	[location retain];
 	_locationLabel.text = location;
 }
 
@@ -169,21 +190,15 @@
 - (void)setStatus:(NSString *)_value
 {
 	NSLog(@"state : %@", _value);
-	status = _value;
-	[_statusImageView.image release];
-	if ([_value isEqualToString:@"offline"])
-	{
+	status = [_value copy];
+	if ([_value isEqualToString:@"offline"]) {
 		_nameLabel.alpha = 0.5;
 		_statusImageView.alpha = 0;
-	}
-	else if ([_value isEqualToString:@"actif"] || [_value isEqualToString:@"connection"])
-	{
+	} else if ([_value isEqualToString:@"actif"] || [_value isEqualToString:@"connection"]) {
 		_nameLabel.alpha = 1;
 		_statusImageView.alpha = 1;
 		_statusImageView.image = [UIImage imageNamed:@"online.png"];
-	}
-	else
-	{
+	} else {
 		_nameLabel.alpha = 1;
 		_statusImageView.alpha = 1;
 		_statusImageView.image = [UIImage imageNamed:@"away.png"];
@@ -192,9 +207,9 @@
 
 - (void)setLogin:(NSString *)_value
 {
-	if (_value)
-	{
-		login = _value;
+	if (_value) {
+		[login autorelease];
+		login = [_value retain];
 		_nameLabel.text = login;
 	}
 }

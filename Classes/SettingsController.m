@@ -13,16 +13,29 @@
 
 - (id)initWithISAccount:(ISAccount *)a
 {
-	if ((self = [super init]) != nil)
-	{
-		_account = a;
+	if ((self = [super init]) != nil) {
+		_account = [a retain];
 		self.view = nil;
 	}
 	return self;
 }
 
+- (void)dealloc
+{
+	[_account release];
+	[_location release];
+	[_userdata release];
+	[_button release];
+	[_disconnectButton release];
+	self.view = nil;
+	
+	[super dealloc];
+}
+
 - (void)loadView
 {
+	if (self.isViewLoaded) return;
+	
 	UIView *myView = [[UIView alloc] init];
 
 	_button = [[UIButton alloc] initWithFrame:CGRectMake(10, 70, 300, 105)];
@@ -41,7 +54,7 @@
 	_location.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	_location.autocorrectionType = UITextAutocorrectionTypeNo;
 	_location.returnKeyType = UIReturnKeyDone;
-	UILabel *locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+	UILabel *locationLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)] autorelease];
 	locationLabel.text = @"   Location";
 	locationLabel.textColor = [UIColor lightGrayColor];
 	locationLabel.backgroundColor = [UIColor clearColor];
@@ -59,7 +72,7 @@
 	_userdata.clearButtonMode = UITextFieldViewModeWhileEditing;
 	_userdata.keyboardType = UIKeyboardTypeASCIICapable;
 	_userdata.returnKeyType = UIReturnKeyDone;
-	UILabel *userdataLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+	UILabel *userdataLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)] autorelease];
 	userdataLabel.text = @"   User Data";
 	userdataLabel.textColor = [UIColor lightGrayColor];
 	userdataLabel.backgroundColor = [UIColor clearColor];
@@ -84,6 +97,7 @@
 	_interfaceOrientation = self.interfaceOrientation;
 
 	self.view = myView;
+	[myView release];
 }
 
 - (void)reposition
@@ -188,11 +202,5 @@
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
 }
-
-
-- (void)dealloc {
-    [super dealloc];
-}
-
 
 @end

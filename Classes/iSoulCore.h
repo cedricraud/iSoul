@@ -13,7 +13,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#import "iSoulCore.h"
 #import "NSPMessages.h"
 #import "ISAccount.h"
 

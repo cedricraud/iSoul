@@ -6,28 +6,26 @@
 //  Copyright 2009 Epita. All rights reserved.
 //
 
-#import "contactTableViewController.h"
-
+#import "ContactTableViewController.h"
 
 @implementation ContactTableViewController
 
-
 - (id)initWithStyle:(UITableViewStyle)style account:(ISAccount *)a
 {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style])
+	// Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
+	if ((self = [super initWithStyle:style]) != nil)
 	{
-		_account = a;
+		_account = [a retain];
 		[self.tableView setRowHeight: 58];
 		self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 		self.tableView.showsVerticalScrollIndicator = NO;
 		self.tableView.backgroundColor = [UIColor clearColor];
 		//CGRectMake(0, 0, 320, 200);
-
+		
 		_addCell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
 		_addCell.selectionStyle = UITableViewCellSelectionStyleBlue;
 		_addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
-
+		
 		_addPicture = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 34, 40)];
 		_addPicture.image = _account.imageLoader.placeholder;
 		[_addCell addSubview:_addPicture];
@@ -43,8 +41,20 @@
 		_addTextField.autocorrectionType = UITextAutocorrectionTypeNo;
 		_addTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
 		_addTextField.returnKeyType = UIReturnKeyDone;
-    }
-    return self;
+	}
+	
+	return self;
+}
+
+- (void)dealloc
+{
+	[_account release];
+	[_addCell release];
+	[_addPicture release];
+	[_addLabel release];
+	[_addTextField release];
+
+	[super dealloc];
 }
 
 - (void)addButton
@@ -91,44 +101,44 @@
 
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-
+	[super viewDidLoad];
+	
 }
 
 
 /*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
+ - (void)viewWillAppear:(BOOL)animated {
+ [super viewWillAppear:animated];
+ }
+ */
 /*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
+ - (void)viewDidAppear:(BOOL)animated {
+ [super viewDidAppear:animated];
+ }
+ */
 /*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
+ - (void)viewWillDisappear:(BOOL)animated {
+ [super viewWillDisappear:animated];
+ }
+ */
 /*
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-*/
+ - (void)viewDidDisappear:(BOOL)animated {
+ [super viewDidDisappear:animated];
+ }
+ */
 
 /*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
+ // Override to allow orientations other than the default portrait orientation.
+ - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+ // Return YES for supported orientations
+ return (interfaceOrientation == UIInterfaceOrientationPortrait);
+ }
+ */
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-
+	[super didReceiveMemoryWarning];
+	
 	// Release any cached data, images, etc that aren't in use.
 }
 
@@ -141,13 +151,13 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+	return 1;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+	
 	if (_account.searching)
 	{
 		NSUInteger length = [_account.searching length];
@@ -160,7 +170,7 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (_account.searching)
+	if (_account.searching)
 		return [_account.searchContact updateWithLogin:_account.searching];
 	else
 		return indexPath.row < [_account.contacts count] ? [[_account.contacts objectAtIndex:indexPath.row] view] : _addCell;
@@ -186,53 +196,48 @@
 				[[NSNotificationCenter defaultCenter] postNotificationName:@"ISC/viewConversation" object:self userInfo:nil];
 			}
 		}
-
+	
 }
 
 
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+	// Return NO if you do not want the specified item to be editable.
+	return YES;
 }
 
 
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ 
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
+ }
+ else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
 
 
-- (void)dealloc {
-    [super dealloc];
-}
+/*
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 
 @end

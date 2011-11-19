@@ -15,10 +15,21 @@
 
 - (id)initWithDate:(NSDate *)d content:(NSString *)c received:(bool)r
 {
-	date = [d retain];
-	content = c;
-	received = r;
+	if ((self = [super init]) != nil) {
+		date = [d retain];
+		content = [c copy];
+		received = r;
+	}
+	
 	return self;
+}
+
+- (void)dealloc
+{
+	[date release];
+	[content release];
+	
+	[super dealloc];
 }
 
 @end

@@ -23,9 +23,7 @@
 	UIImage *deleteContactOn;
 	UIImage *mailButton;
 	UIImage *background;
-
 }
-
 @property(nonatomic, retain) UIImage *placeholder;
 @property(nonatomic, retain) UIImage *contactBackground;
 @property(nonatomic, retain) UIImage *contactBackgroundOn;
